@@ -1,2 +1,15 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import SwippableCard from "../components/swippable-card.svelte";
+
+  let movies = ['sky','landscape','ocean','sea','birds','people','women','men']
+</script>
+
+
+<!-- Page to swipe Cards -->
+<div class="relative flex items-center justify-center h-full w-full">
+  <div class="stack">
+    {#each movies as image}
+      <SwippableCard {image}/>
+    {/each}
+  </div>
+</div>
