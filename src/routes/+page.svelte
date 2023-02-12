@@ -1,15 +1,17 @@
-<script>
-	import SwippableCard from "../components/swippable-card.svelte";
+<!-- Home page / Landing Page -->
 
-  let movies = ['sky','landscape','ocean','sea','birds','people','women','men']
+<script lang="ts">
+	import SwippableCard from "../components/swippable-card.svelte";
+  import type { PageData } from './$types';
+  export let data: PageData;
 </script>
 
 
 <!-- Page to swipe Cards -->
 <div class="relative flex items-center justify-center h-full w-full">
   <div class="stack">
-    {#each movies as image}
-      <SwippableCard {image}/>
+    {#each data.movies as movie}
+      <SwippableCard {movie}/>
     {/each}
   </div>
 </div>

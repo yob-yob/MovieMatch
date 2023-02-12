@@ -1,18 +1,29 @@
 <script lang="ts">
-  export let image: string;
+  import type { movie } from '../types/movie'
+  export let movie: movie;
+  import { page } from '$app/stores';
+
   function generateRandomRotationValue() {
     return Math.floor(Math.random() * 11) - 5;
   }
+  function getMoviePoster(poster_path: string) {
+    let base_url = $page.data.configuration.images.base_url;
+    let poster_size = 'w342';
+    let url = `${base_url}${poster_size}${poster_path}`;
+    return url;
+  }
+  let src = getMoviePoster(movie.poster_path)
+  let title = movie.title
 </script>
 
 <div style:transform={`rotate(${generateRandomRotationValue()}deg)`}>
   <div class="card card-compact w-96 bg-base-100 shadow-xl">
-    <figure><img src="{`https://source.unsplash.com/random/500x500?${image}`}" alt="{image}" /></figure>
+    <figure><img {src} alt="{title}" /></figure>
     <div class="card-body">
-      <h2 class="card-title">{image.toUpperCase()}!</h2>
-      <p>If a dog chews shoes whose shoes does he choose?</p>
+      <h2 class="card-title">{title}!</h2>
+      <p>{movie.overview}</p>
       <div class="card-actions justify-end">
-        <button class="btn btn-primary">Buy Now</button>
+        <button class="btn btn-primary">Watch Now</button>
       </div>
     </div>
   </div>

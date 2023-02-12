@@ -13,7 +13,4 @@
       <slot />
     </div>
   </main>
-  <footer >
-    <FooterNav />
-  </footer>
 </div>
