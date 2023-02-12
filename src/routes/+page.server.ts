@@ -1,15 +1,11 @@
 import { error } from '@sveltejs/kit';
 import { MOVIEDB_API_KEY } from '$env/static/private';
-import type { movie } from '../types/movie';
+import type { movie } from '../types/tmdb';
+import { getTrendingMovies } from '../sdk/tmdb';
  
 /** @type {import('./$types').PageServerLoad} */
 export async function load() {
-
-  let response = await (await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${MOVIEDB_API_KEY}`)).json()
-  
-  let trending = response.results as movie[];
-
   return {
-    movies: trending
+    movies: (await getTrendingMovies(MOVIEDB_API_KEY)).results as movie[]
   };
 }

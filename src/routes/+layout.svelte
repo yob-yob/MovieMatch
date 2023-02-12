@@ -1,7 +1,6 @@
 <script>
   import "../app.css";
   import Navbar from "../components/navbar.svelte";
-  import FooterNav from "../components/footer-nav.svelte";
 </script>
 
 <div class="flex flex-col min-h-screen overflow-x-hidden">
