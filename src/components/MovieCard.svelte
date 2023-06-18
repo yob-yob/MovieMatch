@@ -1,11 +1,10 @@
 <script lang="ts">
   import type { movie } from '../types/tmdb'
   export let movie: movie;
+  
   import { configuration } from '../sdk/tmdb';
 
-  function generateRandomRotationValue() {
-    return Math.floor(Math.random() * 11) - 5;
-  }
+  
   function getMoviePoster(poster_path: string, poster_size: string) {
     let base_url = configuration.images.base_url;
     return `${base_url}${poster_size}${poster_path}`;
@@ -16,10 +15,7 @@
     : movie.original_name
 </script>
 
-<div 
-  style:transform={`rotate(${generateRandomRotationValue()}deg)`}
-  {...$$restProps}
-  >
+<div {...$$restProps}>
   <div class="card image-full w-52 md:w-72 bg-base-100 shadow-xl">
     <figure>
       <img 
