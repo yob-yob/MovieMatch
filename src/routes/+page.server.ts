@@ -15,3 +15,13 @@ export async function load({ locals: { supabase, getSession } }) {
     movies: (await getTrendingMovies(MOVIEDB_API_KEY)).results as movie[]
   };
 }
+
+export const actions = {
+  signout: async ({ locals: { supabase, getSession } }) => {
+    const session = await getSession()
+    if (session) {
+      await supabase.auth.signOut()
+      throw redirect(303, '/')
+    }
+  },
+}

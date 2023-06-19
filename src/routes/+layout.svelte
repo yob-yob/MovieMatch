@@ -8,6 +8,7 @@
 
   let { supabase, session } = data
 	$: ({ supabase, session } = data)
+  $: isLoggedIn = session !== null;
 
 	onMount(() => {
 		const { data } = supabase.auth.onAuthStateChange((event, _session) => {
@@ -18,11 +19,12 @@
 
 		return () => data.subscription.unsubscribe()
 	})
+
 </script>
 
 <div class="flex flex-col min-h-screen overflow-x-hidden">
   <header class="">
-    <Navbar />
+    <Navbar isLoggedIn="{isLoggedIn}"/>
   </header>
   <main class="flex-1 flex">
     <div class="flex-1">

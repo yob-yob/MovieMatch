@@ -2,8 +2,21 @@
 <!-- Issue: FIX TabIndex issues -->
 <!-- Issue: FIX Links -->
 
-<script>
+<script lang="ts">
   import Icon from '@iconify/svelte';
+  import { enhance, type SubmitFunction } from '$app/forms'
+
+  export let isLoggedIn: boolean = false;
+
+  let loading = false
+
+  const handleSignOut: SubmitFunction = () => {
+		loading = true
+		return async ({ update }) => {
+			loading = false
+			update()
+		}
+	}
 </script>
 
 <div class="navbar bg-base-100">
@@ -13,39 +26,30 @@
         <Icon icon="heroicons:bars-3-center-left" class="h-5 w-5" />
       </div>
       <ul class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a href="/">Item 1</a></li>
-        <li>
-          <a href="/" class="justify-between">
-            Parent 
-            <Icon icon="heroicons:chevron-right" class="h-5 w-5" />
-          </a>
-          <ul class="p-2">
-            <li><a href="/">Submenu 1</a></li>
-            <li><a href="/">Submenu 2</a></li>
-          </ul>
-        </li>
-        <li><a href="/">Item 3</a></li>
+        {#if isLoggedIn}
+          <li><a href="/">Home</a></li>
+          <li><a href="/account">Account Profile</a></li>
+        {/if}
       </ul>
     </div>
     <a href="/" class="btn btn-ghost normal-case text-xl">MovieMatch</a>
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
-      <li><a href="/">Item 1</a></li>
-      <li>
-        <a href="/">
-          Parent
-          <Icon icon="heroicons:chevron-down" class="h-5 w-5" />
-        </a>
-        <ul class="p-2">
-          <li><a href="/">Submenu 1</a></li>
-          <li><a href="/">Submenu 2</a></li>
-        </ul>
-      </li>
-      <li><a href="/">Item 3</a></li>
+      {#if isLoggedIn}
+        <li><a href="/">Home</a></li>
+        <li><a href="/account">Account Profile</a></li>
+      {/if}
     </ul>
   </div>
-  <div class="navbar-end">
-    <a href="/" class="btn">Get started</a>
-  </div>
+  
+  {#if isLoggedIn}
+    <div class="navbar-end">
+      <form method="post" action="?/signout" use:enhance={handleSignOut}>
+        <div>
+          <button class="btn" disabled={loading}>Sign Out</button>
+        </div>
+      </form>
+    </div>
+  {/if}
 </div>
