@@ -46,6 +46,6 @@
     </ul>
   </div>
   <div class="navbar-end">
-    <a href="/login" class="btn">Get started</a>
+    <a href="/" class="btn">Get started</a>
   </div>
 </div>

@@ -27,11 +27,12 @@
       rightItems.push(currentMovie)
     } else if (DragStatus === 'left') {
       leftItems.push(currentMovie)
+    } else {
+      draggingInfo = null
+      return null;
     }
-    console.log('Movie List updated', currentMovie?.original_title, rightItems.length, leftItems.length)
     movies.shift();
     movies = movies;
-    console.log('Movie List updated', movies[0].original_title, rightItems.length, leftItems.length)
     draggingInfo = null
   }
 </script>
@@ -65,6 +66,6 @@
         </div>
       </div>
     {:else}
-      No movies
+      No movie
     {/if}
 </div>
