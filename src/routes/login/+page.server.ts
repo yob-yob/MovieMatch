@@ -1,8 +1,9 @@
 // src/routes/login/+page.server.ts
 import { redirect } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
+import { VERCEL_URL } from '$env/static/private';
 
-export const load: PageServerLoad = async ({ url, locals: { getSession } }) => {
+export const load: PageServerLoad = async ({ locals: { getSession } }) => {
   const session = await getSession()
 
   // if the user is already logged in return them to the account page
@@ -10,5 +11,5 @@ export const load: PageServerLoad = async ({ url, locals: { getSession } }) => {
     throw redirect(303, '/account')
   }
 
-  return { url: url.origin }
+  return { url: `https://${VERCEL_URL}` }
 }
