@@ -3,7 +3,7 @@
 	import { ThemeSupa } from '@supabase/auth-ui-shared'
 
 	export let data
-	console.log(data)
+  console.log(data)
 </script>
 
 <svelte:head>
@@ -14,12 +14,12 @@
 	<div class="border p-5 rounded">
 		<Auth
 			supabaseClient={data.supabase}
-			view="sign_in"
+			view="sign_up"
 			redirectTo={`${data.url}/auth/callback`}
 			showLinks={false}
 			appearance={{ theme: ThemeSupa, style: { input: 'color: #fff' } }}
-			additionalData="{{}}"
+      additionalData="{{}}"
 		/>
-		<a href="/register">Sign up</a>
+    <a href="/register">Sign in</a>
 	</div>
 </div>
