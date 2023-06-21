@@ -22,9 +22,9 @@
 <div class="navbar bg-base-100">
   <div class="navbar-start">
     <div class="dropdown">
-      <div class="btn btn-ghost lg:hidden">
+      <label class="btn btn-ghost lg:hidden" for="sidebar-drawer">
         <Icon icon="heroicons:bars-3-center-left" class="h-5 w-5" />
-      </div>
+      </label>
       <ul class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
         {#if isLoggedIn}
           <li><a href="/">Home</a></li>

@@ -11,5 +11,5 @@ export const load: PageServerLoad = async ({ locals: { getSession } }) => {
     throw redirect(303, '/account')
   }
 
-  return { url: `https://${VERCEL_URL}` }
+  return { url: VERCEL_URL }
 }
