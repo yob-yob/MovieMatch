@@ -3,7 +3,6 @@ import type { movie } from '../types/tmdb';
 import { getTrendingMovies } from '../sdk/tmdb';
 import { redirect } from '@sveltejs/kit'
  
-/** @type {import('./$types').PageServerLoad} */
 export async function load({ locals: { supabase, getSession } }) {
   const session = await getSession()
 
@@ -21,7 +20,7 @@ export const actions = {
     const session = await getSession()
     if (session) {
       await supabase.auth.signOut()
-      throw redirect(303, '/')
+      throw redirect(303, '/login')
     }
   },
 }

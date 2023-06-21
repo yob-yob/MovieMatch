@@ -13,13 +13,13 @@
 	onMount(() => {
 		const { data } = supabase.auth.onAuthStateChange((event, _session) => {
 			if (_session?.expires_at !== session?.expires_at) {
+        console.log(_session, session)
 				invalidate('supabase:auth')
 			}
 		})
 
 		return () => data.subscription.unsubscribe()
 	})
-
 </script>
 
 <div class="drawer drawer-open">

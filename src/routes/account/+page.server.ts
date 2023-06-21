@@ -1,5 +1,3 @@
-// src/routes/account/+page.server.ts
-
 import { fail, redirect } from '@sveltejs/kit'
 
 export const load = async ({ locals: { supabase, getSession } }) => {
@@ -53,12 +51,5 @@ export const actions = {
       website,
       avatarUrl,
     }
-  },
-  signout: async ({ locals: { supabase, getSession } }) => {
-    const session = await getSession()
-    if (session) {
-      await supabase.auth.signOut()
-      throw redirect(303, '/')
-    }
-  },
+  }
 }

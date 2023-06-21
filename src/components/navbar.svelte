@@ -4,7 +4,8 @@
 
 <script lang="ts">
   import Icon from '@iconify/svelte';
-  import { enhance, type SubmitFunction } from '$app/forms'
+  import { enhance  } from '$app/forms'
+  import type { SubmitFunction } from '@sveltejs/kit';
 
   export let isLoggedIn: boolean = false;
 
@@ -45,7 +46,7 @@
   
   {#if isLoggedIn}
     <div class="navbar-end">
-      <form method="post" action="?/signout" use:enhance={handleSignOut}>
+      <form method="post" action="/?/signout" use:enhance={handleSignOut}>
         <div>
           <button class="btn" disabled={loading}>Sign Out</button>
         </div>

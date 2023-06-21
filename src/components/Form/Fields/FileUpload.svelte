@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type TextInput from "../../../Form/TextInput";
+	import type FileUploadInput from "../../../Form/FileUploadInput";
 
-  export let field: TextInput;
+  export let field: FileUploadInput;
 </script>
 
 <div class="form-control">
@@ -10,11 +10,11 @@
     <span class="label-text-alt">{field.hint}</span>
   </label>
   <input 
-    type="text" 
+    type="file" 
     id="{field.name}" 
     name="{field.name}" 
     placeholder="{field.placeholder}" 
-    class="input input-bordered" 
+    class="file-input file-input-bordered" 
     disabled="{field.isDisabled}"
   />
   <label class="label" for="{field.name}">

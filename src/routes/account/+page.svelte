@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { enhance, type SubmitFunction } from '$app/forms'
+	import { enhance } from '$app/forms'
   import Avatar from './Avatar.svelte'
 	import TextInput from '../../Form/TextInput';
+	import type { SubmitFunction } from '@sveltejs/kit';
 
 	export let data
 	// export let form
@@ -17,7 +18,7 @@
 	let avatarUrl: string = profile?.avatar_url ?? ''
 
 	const fields = [
-		(new TextInput('fullName')),
+		(new TextInput('fullName').setLabel('Full name')),
 		(new TextInput('email')),
 		(new TextInput('username')),
 		(new TextInput('website')),
@@ -29,19 +30,11 @@
 			loading = false
 		}
 	}
-
-	const handleSignOut: SubmitFunction = () => {
-		loading = true
-		return async ({ update }) => {
-			loading = false
-			update()
-		}
-	}
 </script>
 
 <div class="flex justify-center h-full items-center">
-	<div>
-		<form class="form-widget" method="post" action="?/update" use:enhance={handleSubmit} bind:this={profileForm}>
+	<div class="w-full md:max-w-xl">
+		<form class="form-widget w-full" method="post" action="?/update" use:enhance={handleSubmit} bind:this={profileForm}>
 			<Avatar
 					{supabase}
 					bind:url={avatarUrl}
@@ -61,12 +54,6 @@
 					value={loading ? 'Loading...' : 'Update'}
 					disabled={loading}
 				/>
-			</div>
-		</form>
-
-		<form method="post" action="?/signout" use:enhance={handleSignOut}>
-			<div>
-				<button class="button block" disabled={loading}>Sign Out</button>
 			</div>
 		</form>
 	</div>
