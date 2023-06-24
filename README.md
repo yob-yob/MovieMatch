@@ -36,3 +36,13 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+
+TODO:
+
+- We need to have an on-boarding process, This process is a way for us to understand the user
+  - After creating an account, we will let the user swipe for some few number of movies they like or not like
+  - then based on those we can build a user preference...
+  - after building the prefernce...
+  - A user should belong to a group if not he is required to create one or enter an invite code from an existing group...
+  - 
