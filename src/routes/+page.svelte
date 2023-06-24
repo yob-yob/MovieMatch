@@ -34,22 +34,21 @@
 
   // movies That User Has Already Swiped On
   let user_movies = data.user_movies
-  $: user_movie_ids = user_movies.map((user_movie) => user_movie.movie_tmdb_id)
   // movies to display in the swipe area
   let movies = data.movies;
+  // List of User Movie Ids...
+  $: user_movie_ids = user_movies.map((user_movie) => user_movie.movie_tmdb_id)
   // Filter movies... if movie is already in user_movies do not show it anymore...
   $: filteredMovies = movies.filter((movie) => !user_movie_ids.includes(movie.id))
   // the Current movie to be swipe by the user.
   $: currentMovie = filteredMovies.length > 0 ? filteredMovies[0] : null;
 
+  // used for the swiping package that we are currently using
   let area;
   let draggingInfo: PanInfo | null = null;
-  let DragStatus = 'middle';
   let dragOffset = 300;
   $: dragOffsetX = draggingInfo ? draggingInfo.offset.x : 0;
   $: DragStatus = (dragOffsetX >= dragOffset ? 'right' : (dragOffsetX <= -dragOffset ? 'left' : 'middle'))
-
-  onMount(() => currentMovie && console.log(currentMovie.id, user_movie_ids, user_movie_ids.includes(currentMovie.id), filteredMovies))
 
   async function dragEnded(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
     if (DragStatus === 'middle' || currentMovie === null) {
